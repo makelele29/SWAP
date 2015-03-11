@@ -1,0 +1,15 @@
+Pregunta 1:
+¿Cómo podemos mejorar la disponibilidad? 
+	a) Configurar los servidores con redundancia mediante el software.
+	b) a y c son correctas.
+	c) Usando subsistemas redundantes y monitorizándolos.   
+	d) Ninguna es correcta.
+La respuesta correcta es B
+
+Pregunta 2:
+¿Cómo podemos eliminar la sobrecarga? 
+	a) Intentando no sobrecargar la máquina.
+	b) Remplazar el componente sobrecargado o aumentándole la cantidad o simplemente contratando algo mejor.
+	c) Con un mantenimiento exhaustivo.
+	d) b y c son correctas.
+La respuesta correcta es B

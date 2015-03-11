@@ -1,0 +1,15 @@
+Pregunta 1:
+¿Qué hace falta para montar un servidor en una sola máquina?
+  a) Aplicación de servidor web + sistema operativo bien configurado + conexión a Internet.
+  b) Sistema operativo bien configurado + conexión a Internet.
+  c) Aplicación de servidor web + conexión a Internet + mantenimiento.
+  d) Aplicación de servidor web + mantenimiento.
+La respuesta correcta es A
+  
+Pregunta 2:
+Una granja web además der ser sistemas muy complejos pero sumamente...
+  a) escalables, fiables y flexibles.
+  b) flexibles, escalables y funcionales.
+  c) seguros, escalables y flexibles.
+  d) rentables.
+La respuesta correcta es B
