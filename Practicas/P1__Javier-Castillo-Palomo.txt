@@ -1,3 +1,4 @@
+Máquina 1:
 Server version: Apache/2.2.22 (Ubuntu)
 Server built: Mar 5 2015 18:10:11
 root 1522 0.0 0.6 34048 6988 ? Ss 11:07 0:00 /usr/sbin/apache2 -k start
@@ -9,4 +10,14 @@ www-data 1548 0.0 0.4 34516 4604 ? S 11:07 0:00 /usr/sbin/apache2 -k start
 www-data 1917 0.0 0.3 34072 3760 ? S 11:16 0:00 /usr/sbin/apache2 -k start
 www-data 1918 0.0 0.3 34072 3760 ? S 11:16 0:00 /usr/sbin/apache2 -k start
 root 1936 0.0 0.0 4408 840 tty1 S+ 11:27 0:00 grep --color=auto apache
-feo
+
+Máquina 2:
+Server version: Apache/2.2.22 (Ubuntu)
+Server built:   Mar  5 2015 18:10:11
+root      1571  0.0  0.6  34048  6936 ?        Ss   11:07   0:00 /usr/sbin/apache2 -k start
+www-data  1681  0.0  0.3  34072  3760 ?        S    11:07   0:00 /usr/sbin/apache2 -k start
+www-data  1682  0.0  0.3  34072  3760 ?        S    11:07   0:00 /usr/sbin/apache2 -k start
+www-data  1683  0.0  0.3  34072  3760 ?        S    11:07   0:00 /usr/sbin/apache2 -k start
+www-data  1684  0.0  0.3  34072  3760 ?        S    11:07   0:00 /usr/sbin/apache2 -k start
+www-data  1685  0.0  0.3  34072  3760 ?        S    11:07   0:00 /usr/sbin/apache2 -k start
+root      3095  0.0  0.0   4408   840 tty1     S+   12:13   0:00 grep --color=auto apache
