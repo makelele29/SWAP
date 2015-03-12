@@ -1,40 +1,64 @@
 Práctica 2:
+
 Para realizar la práctica con mi compañero tenemos cada uno una máquina virtual conectada por la misma red, siendo la máquina secundaria la del compañero.
+
 Ejercicio 1:
+
 Para realizar el tar con ficheros locales en un equipo remoto hemos utilizado el comando:
 tar czf - /home/prueba/ | ssh cr13@192.168.2.108 'cat > ~/tar.tgz'
+
 Ejercicio 2:
+
 Primero en la máquina secundaria hemos activado la cuenta root con:
+
 sudo passwd root
+
 Una vez activada la cuenta, en la máquina principal clonamos el contenido del servidor web
+
 rsync -avz -e ssh root@192.168.2.105:/var/www/ /var/www/
+
 Ahora el contenido del servidor web de la máquina principal es igual al de la máquina secundaria.
 Si quisiéramos que al hacer la copia de la máquina secundaria no nos pase por ejemplo los errores originados en dicha máquina o 
 no nos sobrescriba nuestro hola.html creado en la práctica anterior, deberíamos utilizar
+
 rsync -avz --delete --exclude=**/stats --exclude=**/error --
 exclude=**/hola.html -e "ssh -l root"
-root@192.168.2.105:/var/www/ /var/www/:
-el –-delete sería para eliminar de la máquina principal los archivos eliminados de la máquina secundaria.
+root@192.168.2.105:/var/www/ /var/www/
+
+El –-delete sería para eliminar de la máquina principal los archivos eliminados de la máquina secundaria.
+
 Ejercicio 3:
+
 Para crear la clave pública y privada se debe hacer 
+
 ssh-keygen -t dsa 
+
 Nos pedirá que le demos un nombre “pacris” y una contraseña que será para añadirle seguridad a la clave privada, sino no ponemos contraseña accederemos directamente.
 Una vez realizado esto debemos pasarle la clave pública al equipo remoto
 Como solo tenemos esas par de claves pacris y pacris.pub para copiar a la maquina secundaria ponemos:
+
 ssh-copy-id  root@192.168.2.108
+
 Cuando termina la ejecución te dice que poniendo ssh root@192.168.2.108 puedes conectarte.
 Otro método para conectarse seria con ssh 192.168.2.108 –l root.
 Al probarlo se conecta automáticamente sin contraseña.
+
 Ejercicio 4:
+
 Lo primero es crearse el script para que clone el contenido del servidor web a mi máquina.
 Para ello utilizaremos el comando syrnc que hicimos en el ejercicio 2:
+
 #!/bin/bash
 rsync -avz --delete --exclude=**/stats --exclude=**/error --
 exclude=**/hola.html -e "ssh -l root"
 root@192.168.2.108:/var/www/ /var/www/
+
 Este script lo hemos llamado actu.sh, una vez creado lo hemos guardado en /etc/.
 Para que se ejecute a cada hora debemos añadir en /etc/crontab una nueva línea para esto.
+
 @hourly root /etc/actu.sh
-Esta manera es más resumida la normal sería:
+
+Esta manera es más resumida, la normal sería:
+
 0 * * * * root  /etc/actu.sh
 
