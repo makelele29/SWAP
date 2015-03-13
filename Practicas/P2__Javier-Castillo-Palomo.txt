@@ -1,3 +1,5 @@
+Javier Castillo Palomo
+Cristóbal Rodríguez Reina
 Práctica 2:
 
 Para realizar la práctica con mi compañero tenemos cada uno una máquina virtual conectada por la misma red, siendo la máquina secundaria la del compañero.
@@ -15,7 +17,7 @@ sudo passwd root
 
 Una vez activada la cuenta, en la máquina principal clonamos el contenido del servidor web
 
-rsync -avz -e ssh root@192.168.2.105:/var/www/ /var/www/
+rsync -avz -e ssh root@192.168.2.108:/var/www/ /var/www/
 
 Ahora el contenido del servidor web de la máquina principal es igual al de la máquina secundaria.
 Si quisiéramos que al hacer la copia de la máquina secundaria no nos pase por ejemplo los errores originados en dicha máquina o 
@@ -23,7 +25,7 @@ no nos sobrescriba nuestro hola.html creado en la práctica anterior, deberíamos 
 
 rsync -avz --delete --exclude=**/stats --exclude=**/error --
 exclude=**/hola.html -e "ssh -l root"
-root@192.168.2.105:/var/www/ /var/www/
+root@192.168.2.108:/var/www/ /var/www/
 
 El –-delete sería para eliminar de la máquina principal los archivos eliminados de la máquina secundaria.
 
