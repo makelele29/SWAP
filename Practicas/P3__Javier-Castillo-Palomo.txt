@@ -1,0 +1,138 @@
+Javier Castillo Palomo
+Cristóbal Ródriguez Reina
+Práctica 3: Balanceo de carga
+
+IP de la maquina 192.168.2.103
+
+Vamos a Instalar nginx en Ubuntu Server 12.04 con los siguientes comandos:
+
+	cd /tmp/
+	wget http://nginx.org/keys/nginx_signing.key
+	apt-key add /tmp/nginx_signing.key
+	rm -f /tmp/nginx_signing.key
+
+Antes de instalar nginx hemos insertado las siguientes líneas en /etc /apt/sources.list
+
+	echo "deb http://nginx.org/packages/ubuntu/ lucid nginx" >> /etc/apt/sources.list
+	echo "deb-src http://nginx.org/packages/ubuntu/ lucid nginx" >> /etc/apt/sources.list
+
+Una vez insertadas las líneas procedemos a instalar el paquete del nginx:
+
+	apt-get update
+	apt-get install nginx
+
+Si se instala sin fallos, pasamos a configurarlo de la siguiente forma (modo admin):
+Abrimos el archivo /etc/nginx/conf.d/default.conf  
+Hacemos una copia de seguridad y creamos nuestro default.conf con lo siguiente
+
+upstream apaches {
+	server 192.168.2.102;
+	server 192.168.2.104;
+}
+
+server{
+	listen 80;
+	server_name cr13;
+	access_log /var/log/nginx/cr13.access.log;
+	error_log /var/log/nginx/cr13.error.log;
+	root /var/www/;
+
+	location /
+	{
+		proxy_pass http://apaches;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_http_version 1.1;
+		proxy_set_header Connection "";
+	}
+}
+
+Una vez guardado los cambios pasamos a reiniciar el servicio de la siguiente manera:
+service nginx restart
+
+Si no ha dado ningún fallo pasamos a probar el balanceador de carga haciendo peticiones a la IP de esta máquina. 
+Nos dio fallo y reiniciamos la maquina y reiniciamos el servicio y ya no nos dio fallo:
+
+	curl http://192.168.2.103
+	curl http://192.168.2.103
+
+Nos muestra la página de inicio de cada una de las máquinas, alternativamente.
+
+Le vamos a añadir el doble de carga a la maquina con la ip  192.168.2.102, para ello volvemos al  
+/etc/nginx/conf.d/default.conf  y insertamos lo siguiente:
+
+upstream apaches {
+	server 192.168.2.102 weight=2;
+	server 192.168.2.104 weight=1;
+}
+
+Lo que pasa es que si tenemos  una sesión abierta y se recargar, puede ser que el balanceador cargue la página 
+del otro servidor por lo tanto nos daría algún error.
+Una posible solución es que se le asigne a cada ip un servidor y así evitamos el problema anterior:
+
+upstream apaches {
+	ip_hash;
+	server 192.168.2.102;
+	server 192.168.2.104;
+}
+
+El problema de esto es que el balanceo no es equilibrado.
+
+La opción más óptima para estos problemas seria utilizar el keepalive que sirve para mantener una sesión x segundos.
+
+upstream apaches {
+	server 192.168.2.102;
+	server 192.168.2.104;
+	keepalive 3;
+}
+
+Así solucionamos que haya un balanceado equilibrado y no de errores al recargar.
+
+Esta configuración es la que hemos utilizado nosotros como ejemplo para repartir la carga entre tres servidores.
+
+upstream backend {
+	server 192.168.2.102 weight=3;
+	server 192.168.2.104 max_fails=5 fail_timeout=15s;
+	server 192.168.2.106;
+}
+
+Si llegan 5 peticiones, 3 de ellas van a la ip=192.168.2.102 y las restantes a la ip=192.168.2.104 y a la ip=192.168.2.106.
+A la maquina con ip=192.168.2.104  le hemos puesto que espere 5 intentos fallidos de conexión antes de dar por considerado 
+ese servidor como no operativo y una espera de 15 segundos entre fallos.
+
+Balanceo de carga con haproxy
+
+Instalamos el haproxy y el joe
+
+	sudo apt-get install haproxy joe
+
+Una vez instalado vamos a configurarlo, para ello vamos a editar con joe el archivo /etc/haproxy/haproxy.cfg (modo admin) y 
+escribimos lo siguiente:
+
+global
+	daemon
+	maxconn 256
+	
+defaults
+	mode http
+	contimeout 4000
+	clitimeout 42000
+	srvtimeout 43000
+	
+frontend http-in
+	bind *:80
+	default_backend servers
+
+backend servers
+	server m1 192.168.2.104:80 maxconn 32 weight 2
+	server m2 192.168.2.102:80 maxconn 32 weight 1
+
+Le hemos puesto el doble de carga al servidor m1 como pide la práctica.
+Para comprobar el balanceamiento del procesador se hace:
+
+	/usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg
+
+No nos ha dado errores y al hacer las peticiones hemos comprobado que reparte las peticiones entre ambos.
+	curl http://192.168.2.106
+	curl http://192.168.2.106
