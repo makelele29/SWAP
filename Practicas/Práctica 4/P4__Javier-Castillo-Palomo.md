@@ -45,18 +45,19 @@ Httpref
     #!/bin/bash
 	for ((i = 0 ;  i <= 9;  i++))
 	do
-		httperf --server "ip del balanceador o ip de un servidor" --port 80 --uri /f.php --rate 150 --num-conn 27000 --num-call 1 --timeout 5 >> httperf.txt
+		httperf --server "ip del balanceador o ip de un servidor" --port 80 --uri /f.php --rate 150 --num-conn 5000 --num-call 1 --timeout 5 >> httperf.txt
 	
 	done
 
 #### :bar_chart: Gráficas
 
-![Httpref]()
+![Httpref](https://github.com/makelele29/SWAP/blob/master/Practicas/Pr%C3%A1ctica%204/Httperf.PNG?raw=true)
 
 #### :pencil2: Conclusiones
+Todas las máquinas hacen 5000 peticiones por lo tanto la primera gráfica es normal que estén con los mismo resultados, si es verdad que con el balanceador de carga de haproxy en este caso es el que mejor va respondiendo a 4664 de 5000 y tardando menos tiempo que ninguna de las otras dos.
 
 
- OpenWebLoad
+OpenWebLoad
 -------------------
 
 #### :page_facing_up: Script
