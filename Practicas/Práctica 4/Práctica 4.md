@@ -1,9 +1,9 @@
 Práctica 4
 ===================
-<i class="icon-user"></i> Javier Castillo Palomo
+:bust_in_silhouette: Javier Castillo Palomo
 
 
-<i class="icon-user"></i> Cristóbal Rodríquez Reina
+:bust_in_silhouette: Cristóbal Rodríquez Reina
 
 ----------
 
