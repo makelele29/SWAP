@@ -1,12 +1,13 @@
 Práctica 4
 ===================
 :bust_in_silhouette: Javier Castillo Palomo
+
 :bust_in_silhouette: Cristóbal Rodríquez Reina
 
 ----------
 
 
-:wrench: </i>Comprobar el rendimiento de servidores web.
+Comprobar el rendimiento de servidores web.
 ==================
 
 > **Observaciones**
@@ -15,7 +16,7 @@ Práctica 4
 > - También hemos realizado un **script** para ejecutar y almacenar las 10 ejecuciones.
 > - Los datos no son del todo exactos, esto es debido a que estamos haciendo pruebas en un entorno virtual.
 
-:one: Apache Benchmark
+Apache Benchmark
 -------------------
 
 ###:page_facing_up:  Script
@@ -36,7 +37,7 @@ Práctica 4
 En el time taken y en el Time per request en los balanceadores se reduce bastante lo que es normal por repartir la carga.
 En cambio en el failed request y el request per second toma valores un tanto raros.
 
-:two: Httpref
+Httpref
 -------------------
 
 #### :page_facing_up: Script
@@ -55,8 +56,7 @@ En cambio en el failed request y el request per second toma valores un tanto rar
 #### :pencil2: Conclusiones
 
 
-
-:three: OpenWebLoad
+ OpenWebLoad
 -------------------
 
 #### :page_facing_up: Script
