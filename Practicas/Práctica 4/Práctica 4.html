@@ -1,0 +1,83 @@
+<h1 id="práctica-4">Práctica 4</h1>
+
+<p><i class="icon-user"></i> Javier Castillo Palomo <br>
+<i class="icon-user"></i> Cristóbal Rodríquez Reina</p>
+
+<hr>
+
+
+
+<h1 id="comprobar-el-rendimiento-de-servidores-web"><i class="icon-wrench"></i>Comprobar el rendimiento de servidores web.</h1>
+
+<blockquote>
+  <p><strong>Observaciones</strong></p>
+  
+  <ul>
+  <li>Para esta prueba hemos utilizado el archivo <strong>f.php</strong> pero con un bucle más reducido para que no tardara más de un minuto en terminar.</li>
+  <li>También hemos realizado un <strong>script</strong> para ejecutar y almacenar las 10 ejecuciones.</li>
+  <li>Los datos no son del todo exactos, esto es debido a que estamos haciendo pruebas en un entorno virtual.</li>
+  </ul>
+</blockquote>
+
+
+
+<h2 id="apache-benchmark">Apache Benchmark</h2>
+
+<h4 id="script"><i class="icon-file"></i> Script</h4>
+
+<pre><code>#!/bin/bash
+for ((i = 0 ;  i &lt;= 9;  i++))
+do
+    ab -n 1000 -c "ip del balanceador o ip de un servidor"/f.php &gt;&gt; ab.txt
+
+done
+</code></pre>
+
+<h4 id="gráficas"><i class="icon-picture"></i> Gráficas</h4>
+
+<p><img src="https://github.com/makelele29/SWAP/blob/master/Practicas/Pr%C3%A1ctica%204/AB.JPG?raw=true" alt="Apache Benchmarck" title=""></p>
+
+
+
+<h4 id="conclusiones"><i class="icon-edit"></i> Conclusiones</h4>
+
+<p>En el time taken y en el Time per request en los balanceadores se reduce bastante lo que es normal por repartir la carga. <br>
+En cambio en el failed request y el request per second toma valores un tanto raros.</p>
+
+<h2 id="httpref">Httpref</h2>
+
+<h4 id="script-1"><i class="icon-file"></i> Script</h4>
+
+<pre><code>#!/bin/bash
+for ((i = 0 ;  i &lt;= 9;  i++))
+do
+    httperf --server "ip del balanceador o ip de un servidor" --port 80 --uri /f.php --rate 150 --num-conn 27000 --num-call 1 --timeout 5 &gt;&gt; httperf.txt
+
+done
+</code></pre>
+
+<h4 id="gráficas-1"><i class="icon-picture"></i> Gráficas</h4>
+
+<p>!<a href="">Httpref</a></p>
+
+<h4 id="conclusiones-1"><i class="icon-edit"></i> Conclusiones</h4>
+
+<h2 id="openwebload">OpenWebLoad</h2>
+
+<h4 id="script-1"><i class="icon-file"></i> Script</h4>
+
+<pre><code>#!/bin/bash
+for ((i = 0 ;  i &lt;= 9;  i++))
+do
+    echo -ne '\n' | sleep 30s |openload "ip del balanceador o ip de un servidor"/f.php 10 &gt;&gt; OpenWebLoad.txt
+
+done
+</code></pre>
+
+<h4 id="gráficas-1"><i class="icon-picture"></i> Gráficas</h4>
+
+<p><img src="https://github.com/makelele29/SWAP/blob/master/Practicas/Pr%C3%A1ctica%204/openWebLoad.JPG?raw=true" alt="OpenWebLoad" title=""></p>
+
+<h4 id="conclusiones-1"><i class="icon-edit"></i> Conclusiones</h4>
+
+<p>Aqui casi todas las gráficas tienen algo de sentido ya que en el total TPS es normal que los cargadores tarden más que el servidores solo y en los otros dos que los balanceadores tarden menos.</p>
