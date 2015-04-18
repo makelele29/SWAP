@@ -1,14 +1,12 @@
 Práctica 4
 ===================
 :bust_in_silhouette: Javier Castillo Palomo
-
-
 :bust_in_silhouette: Cristóbal Rodríquez Reina
 
 ----------
 
 
-<i class="icon-wrench"></i>Comprobar el rendimiento de servidores web.
+:wrench: </i>Comprobar el rendimiento de servidores web.
 ==================
 
 > **Observaciones**
@@ -17,10 +15,10 @@ Práctica 4
 > - También hemos realizado un **script** para ejecutar y almacenar las 10 ejecuciones.
 > - Los datos no son del todo exactos, esto es debido a que estamos haciendo pruebas en un entorno virtual.
 
-Apache Benchmark
+:one: Apache Benchmark
 -------------------
 
-#### <i class="icon-file"></i> Script
+###:page_facing_up:  Script
 
     #!/bin/bash
 	for ((i = 0 ;  i <= 9;  i++))
@@ -29,19 +27,19 @@ Apache Benchmark
 		
 	done
 
-#### <i class="icon-picture"></i> Gráficas
+#### :bar_chart: Gráficas
 
 ![Apache Benchmarck](https://github.com/makelele29/SWAP/blob/master/Practicas/Pr%C3%A1ctica%204/AB.JPG?raw=true)
 
-#### <i class="icon-edit"></i> Conclusiones
+#### :pencil2: Conclusiones
 
 En el time taken y en el Time per request en los balanceadores se reduce bastante lo que es normal por repartir la carga.
 En cambio en el failed request y el request per second toma valores un tanto raros.
 
-Httpref
+:two: Httpref
 -------------------
 
-#### <i class="icon-file"></i> Script
+#### :page_facing_up: Script
 
     #!/bin/bash
 	for ((i = 0 ;  i <= 9;  i++))
@@ -50,18 +48,18 @@ Httpref
 	
 	done
 
-#### <i class="icon-picture"></i> Gráficas
+#### :bar_chart: Gráficas
 
 ![Httpref]()
 
-#### <i class="icon-edit"></i> Conclusiones
+#### :pencil2: Conclusiones
 
 
 
-OpenWebLoad
+:three: OpenWebLoad
 -------------------
 
-#### <i class="icon-file"></i> Script
+#### :page_facing_up: Script
 
     #!/bin/bash
 	for ((i = 0 ;  i <= 9;  i++))
@@ -70,10 +68,10 @@ OpenWebLoad
 		
 	done
 
-#### <i class="icon-picture"></i> Gráficas
+#### :bar_chart: Gráficas
 
 ![OpenWebLoad](https://github.com/makelele29/SWAP/blob/master/Practicas/Pr%C3%A1ctica%204/openWebLoad.JPG?raw=true)
 
-#### <i class="icon-edit"></i> Conclusiones
+#### :pencil2: Conclusiones
 
 Aqui casi todas las gráficas tienen algo de sentido ya que en el total TPS es normal que los cargadores tarden más que el servidores solo y en los otros dos que los balanceadores tarden menos.
