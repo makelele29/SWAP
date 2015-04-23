@@ -1,0 +1,14 @@
+¿El software de cortafuegos por excelencia es?
+  a) No hay ninguno por excelencia.
+  b) PrivateFirewall.
+  c) PeerBlock.
+  d) iptables.
+  respuesta correcta: d
+
+¿Cómo es más fácil detectar un ataque?
+  a) Con una capa de seguridad.
+  b) Con una capa de seguridad y claves muy seguras.
+  c) Con varias capas de seguridad.
+  d) Ninguna es correcta.
+  respuesta correcta: c
+

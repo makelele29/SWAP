@@ -1,0 +1,13 @@
+ Es uso de hacer test es para…:
+  a) problemas de rendimiento y degradación de recursos.
+  b) detectar las caídas o errores de programación.
+  c) detectar posibles cuellos de botella e ineficiencias.
+  d) Todas son correctas.
+  respuesta correcta: d
+
+ ¿Cuándo hay degradación en los tiempos de respuesta?:
+  a) Cuando hay un pico en el tráfico de red.
+  b) Cuando no hay tráfico de red.
+  c) Cuando existe un límite de tráfico de red suficientemente alto.
+  d) A y B son corectas.
+  respuesta correcta: c

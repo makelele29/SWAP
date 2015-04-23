@@ -1,0 +1,13 @@
+ ¿Qué alternativas son para conectar una granja web a otras redes?:
+  a) Configuración sin DMZ
+  b) Configuración de DMZ tradicional
+  c) Configuración de DMZ simple
+  d) Todas son correctas
+  respuesta correcta: d
+
+ ¿Cuál de estos factores depende para asegurar la calidad del servicio y la seguridad?:
+  a) Calidad del servicio y ancho de banda
+  b) Filtrado y bloqueo de paquetes
+  c) Network address translation (NAT)
+  d) Todas son correctas
+  respuesta correcta: d

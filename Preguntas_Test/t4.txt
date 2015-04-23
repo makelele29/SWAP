@@ -1,0 +1,13 @@
+  ¿Cuáles son algunos de los beneficios del balanceo de carga?:
+  a) Escalabilidad, mantenimiento, seguridad, calidad de servicio.
+  b) Coste, escalabilidad, rendimiento, seguridad.
+  c) Escalabilidad, mantenimiento, seguridad, coste.
+  d) Calidad de servicio, escalabilidad, rendimiento, seguridad.
+  respuesta correcta: a
+
+ El balanceo de carga global es..:
+  a) una nueva forma de balanceo de carga con mayor carga.
+  b) una serie de técnicas para distribuir la carga entre varios centros de datos.
+  c) poco complejo.
+  d) la manera de unir la BD en un solo servidor.
+  respuesta correcta: b
