@@ -171,7 +171,7 @@ Paramos el esclavo:
 
     mysql> STOP SLAVE;
    
- creamos un usuario y le damos permisos de acceso para la replicación.
+ Creamos un usuario y le damos permisos de acceso.
 
     mysql> CREATE USER maestro IDENTIFIED BY 'maestro';
 	mysql> GRANT REPLICATION SLAVE ON *.* TO 'maestro'@'%' IDENTIFIED BY 'maestro';
@@ -191,17 +191,17 @@ Ahora utilizamos SHOW MASTER STATUS para mostrar los datos de la BD que vamos a 
 
     mysql> START SLAVE;
 
-Volvemos a la maquina esclavo y ejecutamos
+Volvemos a la máquina esclavo y ejecutamos
 
     START SLAVE;
     UNLOCK TABLES;
 
-Una vez realizado esto debemos irnos a las dos maquinas y ejecutar “SHOW SLAVE STATUS\G”  
+Una vez realizado esto debemos irnos a las dos máquinas y ejecutar “SHOW SLAVE STATUS\G”  
 
 ###Imágenes de configuración maestro-maestro
 
 ![SHOW SLAVE STATUS\G --> MAQUINA1](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/show%20master%20STATUS%20m-m.JPG?raw=true)
 
-Inserción desde ambas maquinas resultados vistos en maquina 1
+Inserción desde ambas máquinas resultados vistos en máquina 1
 
 ![Insert en ambas maquinas](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/insert_maestro-maestro.JPG?raw=true)
