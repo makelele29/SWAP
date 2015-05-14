@@ -163,3 +163,45 @@ Por último, arrancamos el esclavo y ya está todo listo para replicar los datos
 ![enter image description here](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/SHOW_MASTER_STATUS.png?raw=true)
 ![enter image description here](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/FUNCIONANDO.png?raw=true)
  
+Replicación de BD mediante una configuración maestro-maestro
+-------------------
+### :pencil2: Pasos seguidos a partir de la configuración maestro-esclavo
+####Máquina esclava.
+Paramos el esclavo:
+
+    mysql> STOP SLAVE;
+   
+ creamos un usuario y le damos permisos de acceso para la replicación.
+
+    mysql> CREATE USER maestro IDENTIFIED BY 'maestro';
+	mysql> GRANT REPLICATION SLAVE ON *.* TO 'maestro'@'%' IDENTIFIED BY 'maestro';
+	mysql> FLUSH PRIVILEGES;
+	mysql> FLUSH TABLES;
+	mysql> FLUSH TABLES WITH READ LOCK;
+Ahora utilizamos SHOW MASTER STATUS para mostrar los datos de la BD que vamos a replicarlos.
+
+    mysql> SHOW MASTER STATUS;
+
+####Máquina maestro.
+
+    mysql> CHANGE MASTER TO MASTER_HOST='192.168.152.131',
+    MASTER_USER='maestro', MASTER_PASSWORD='maestro',
+    MASTER_LOG_FILE='mysql-bin.000010', MASTER_LOG_POS=501,
+    MASTER_PORT=3306;
+
+    mysql> START SLAVE;
+
+Volvemos a la maquina esclavo y ejecutamos
+
+    START SLAVE;
+    UNLOCK TABLES;
+
+Una vez realizado esto debemos irnos a las dos maquinas y ejecutar “SHOW SLAVE STATUS\G”  
+
+###Imágenes de configuración maestro-maestro
+
+![SHOW SLAVE STATUS\G --> MAQUINA1](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/show%20master%20STATUS%20m-m.JPG?raw=true)
+
+Inserción desde ambas maquinas resultados vistos en maquina 1
+
+![Insert en ambas maquinas](https://github.com/cr13/SWAP2015/blob/master/Practicas_Swap/P5/insert_maestro-maestro.JPG?raw=true)
